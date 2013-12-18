@@ -1,3 +1,4 @@
+require 'rake'
 require 'capistrano/ops_works'
 
 namespace :opsworks do
