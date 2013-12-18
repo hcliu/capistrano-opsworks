@@ -38,6 +38,7 @@ namespace :opsworks do
   task :migrate do
     puts start_deploy({"migrate"=>["true"]})
   end
+  task :migrations => :migrate
 
   desc "Checks your app_id for validity"
   task :check do
