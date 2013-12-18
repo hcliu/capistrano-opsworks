@@ -25,50 +25,53 @@ If you haven't installed [Capistrano](https://github.com/capistrano/capistrano),
 Require the gem in your Capfile (example taken from default generated Capfile)
 
 ```ruby
+###########
+# Capfile #
+###########
 
-    # Load DSL and Setup Up Stages
-    require 'capistrano/setup'
+# Load DSL and Setup Up Stages
+require 'capistrano/setup'
 
-    # Includes default deployment tasks
-    require 'capistrano/deploy'
+# Includes default deployment tasks
+require 'capistrano/deploy'
 
-    require 'capistrano/ops_works'
+require 'capistrano/ops_works'
 
-    # Includes tasks from other gems included in your Gemfile
-    #
-    # For documentation on these, see for example:
-    #
-    #   https://github.com/capistrano/rvm
-    #   https://github.com/capistrano/rbenv
-    #   https://github.com/capistrano/chruby
-    #   https://github.com/capistrano/bundler
-    #   https://github.com/capistrano/rails/tree/master/assets
-    #   https://github.com/capistrano/rails/tree/master/migrations
-    #
-    # require 'capistrano/rvm'
-    # require 'capistrano/rbenv'
-    # require 'capistrano/chruby'
-    # require 'capistrano/bundler'
-    # require 'capistrano/rails/assets'
-    # require 'capistrano/rails/migrations'
+# Includes tasks from other gems included in your Gemfile
+#
+# For documentation on these, see for example:
+#
+#   https://github.com/capistrano/rvm
+#   https://github.com/capistrano/rbenv
+#   https://github.com/capistrano/chruby
+#   https://github.com/capistrano/bundler
+#   https://github.com/capistrano/rails/tree/master/assets
+#   https://github.com/capistrano/rails/tree/master/migrations
+#
+# require 'capistrano/rvm'
+# require 'capistrano/rbenv'
+# require 'capistrano/chruby'
+# require 'capistrano/bundler'
+# require 'capistrano/rails/assets'
+# require 'capistrano/rails/migrations'
 
-    # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
-    Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
-
+# Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
+Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
 ```
 
 In the appropriate stage deploy file, add your OpsWorks details
 
 ```ruby
+#############################
+# /config/deploy/staging.rb #
+#############################
 
-    # /config/deploy/staging.rb
-    set :stage, :staging
+set :stage, :staging
 
-    set :access_key_id, '<aws_access_key_id>'
-    set :secret_access_key, '<aws_secret_access_key>'
-    set :stack_id, '<opsworks_stack_id>'
-    set :app_id, '<opsworks_app_id>'
-
+set :access_key_id, '<aws_access_key_id>'
+set :secret_access_key, '<aws_secret_access_key>'
+set :stack_id, '<opsworks_stack_id>'
+set :app_id, '<opsworks_app_id>'
 ```
 
 Check the task list using
