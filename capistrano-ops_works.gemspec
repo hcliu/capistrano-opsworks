@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["hubert.c.liu@gmail.com"]
   spec.description   = %q{AWS OpsWorks deployment with capistrano}
   spec.summary       = %q{Providing simple tasks to deploy to AWS OpsWorks using capistrano 3}
-  spec.homepage      = "https://github.com/hcliu/capistrano-ops_works"
+  spec.homepage      = "https://github.com/hcliu/capistrano-opsworks"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
