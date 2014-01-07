@@ -18,7 +18,8 @@ module Capistrano
       end
 
       def deploy args={}
-        create_deployment args
+        deploy_id = create_deployment(args)
+        verify deploy_id
       end
 
       def check args={}
@@ -28,14 +29,38 @@ module Capistrano
         stack_apps.data[:apps].collect { |a| a[:app_id] }.include? app_id
       end
 
-      def history args={}
-        describe_deployments args
+      def history app_id
+        describe_deployments :app_id => app_id
+      end
+
+      def verify deploy_id
+        complete = false
+
+        until complete
+          finished_deploy = check_completion deploy_id
+          if finished_deploy
+            puts " [ #{Time.now} ] [ #{finished_deploy[:status]} ] #{finished_deploy[:deployment_id]} "
+            complete = true
+          else
+            sleep 15
+          end
+        end
+
       end
 
       private
 
+      def check_completion deploy_id
+        puts "verifying ..."
+
+        d = describe_deployments(:deployment_ids => [deploy_id])
+        the_deploy = d.first
+
+        return the_deploy if the_deploy.fetch(:completed_at, nil)
+      end
+
       def describe_deployments args={}
-        client.describe_deployments(:app_id => args.fetch(:app_id))
+        client.describe_deployments(args).data[:deployments]
       end
 
       def describe args={}
@@ -60,7 +85,7 @@ module Capistrano
           },
           :comment => comment,
           :custom_json => custom_json
-        )
+        ).data[:deployment_id]
       end
 
     end

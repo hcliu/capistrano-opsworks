@@ -46,10 +46,15 @@ namespace :opsworks do
     puts "app_id #{fetch(:app_id)} is valid" if opsworks.check(deployment_ids)
   end
 
+  desc "Displays deployment history for app_id"
   task :history do
-    puts opsworks.history(deployment_ids)
+    puts opsworks.history deployment_ids[:app_id]
   end
 
+  task :verify do
+    deploy_id = "ec832d03-d96f-4f0c-ba75-ca702e293b6a"
+    puts opsworks.verify deploy_id
+  end
 end
 
 desc "Deploy to opsworks"
