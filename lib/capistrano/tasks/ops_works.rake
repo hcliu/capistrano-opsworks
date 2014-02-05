@@ -51,9 +51,8 @@ namespace :opsworks do
     puts opsworks.history deployment_ids[:app_id]
   end
 
-  task :verify do
-    deploy_id = "ec832d03-d96f-4f0c-ba75-ca702e293b6a"
-    puts opsworks.verify deploy_id
+  task :verify, :deployment_id do |task, args|
+    puts opsworks.verify args[:deployment_id]
   end
 end
 
