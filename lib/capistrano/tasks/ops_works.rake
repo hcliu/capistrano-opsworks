@@ -24,7 +24,8 @@ namespace :opsworks do
         :name => 'deploy', 
         :args => command_args
       },
-      :comment => 'Capistrano OpsWorks Deploy'
+      :comment => 'Capistrano OpsWorks Deploy',
+      :custom_json => fetch(:opsworks_custom_json) || ''
     }
     opts = ids.merge(deploy_opts)
 
